@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {
-  Text,
   View,
   StyleSheet,
   ListView
 } from 'react-native';
+
+import TaskRow from './TaskRow';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +30,7 @@ class TaskList extends React.Component{
 
   renderRow(todo) {
     return (
-      <Text>{todo.task}</Text>
+      <TaskRow todo={todo} />
     );
   }
 
