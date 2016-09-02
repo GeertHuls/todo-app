@@ -10,7 +10,10 @@ import TaskRow from './TaskRow';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40
+    paddingTop: 40,
+    backgroundColor: '#F7F7F7',
+    flex: 1,
+    justifyContent: 'flex-start'
   }
 });
 
