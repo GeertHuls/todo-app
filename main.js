@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  AppRegistry,
-  Text
+  AppRegistry
 } from 'react-native';
 import TaskList from './TaskList';
 
@@ -21,9 +20,14 @@ class TodoApp extends React.Component {
     };
   }
 
+  onAddStarted() {
+    console.log('on add started');
+  }
+
   render() {
       return (
         <TaskList
+          onAddStarted={this.onAddStarted}
           todos={this.state.todos}
           />
       );
