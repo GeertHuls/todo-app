@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-  AppRegistry
+  AppRegistry,
+  Navigator,
+  Text
 } from 'react-native';
 import TaskList from './TaskList';
 
@@ -20,16 +22,36 @@ class TodoApp extends React.Component {
     };
   }
 
-  onAddStarted() {
-    console.log('on add started');
+  renderScene(route, nav) {
+    switch (route.name) {
+      case 'taskform':
+        return (
+          <Text>Add form comes here.</Text>
+        );
+      default:
+        return (
+          <TaskList
+            onAddStarted={() =>
+              nav.push({
+                name:'taskform'
+            })}
+            todos={route.passProps.todos}
+            />
+        );
+    }
   }
 
   render() {
       return (
-        <TaskList
-          onAddStarted={this.onAddStarted}
-          todos={this.state.todos}
-          />
+        <Navigator
+          initialRoute={{
+              name: 'tasklist',
+              index: 0,
+              passProps: {
+                todos: this.state.todos}
+            }
+          }
+          renderScene={this.renderScene} />
       );
   }
 }
