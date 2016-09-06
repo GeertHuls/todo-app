@@ -1,10 +1,11 @@
 import React from 'react';
 import {
   AppRegistry,
-  Navigator,
-  Text
+  Navigator
 } from 'react-native';
+
 import TaskList from './TaskList';
+import TaskForm from './TaskForm';
 
 class TodoApp extends React.Component {
   constructor(props, context) {
@@ -32,10 +33,7 @@ class TodoApp extends React.Component {
     switch (route.name) {
       case 'taskform':
         return (
-          <Text
-            style={{
-              paddingTop: 20
-            }} >Add form comes here.</Text>
+          <TaskForm />
         );
       default:
         return (
