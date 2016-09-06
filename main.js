@@ -32,7 +32,10 @@ class TodoApp extends React.Component {
     switch (route.name) {
       case 'taskform':
         return (
-          <Text>Add form comes here.</Text>
+          <Text
+            style={{
+              paddingTop: 20
+            }} >Add form comes here.</Text>
         );
       default:
         return (
@@ -45,9 +48,14 @@ class TodoApp extends React.Component {
     }
   }
 
+  configureScene() {
+    return Navigator.SceneConfigs.FloatFromBottom;
+  }
+
   render() {
       return (
         <Navigator
+          configureScene={this.configureScene}
           initialRoute={{
               name: 'tasklist',
               index: 0,
