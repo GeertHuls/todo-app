@@ -22,6 +22,12 @@ class TodoApp extends React.Component {
     };
   }
 
+  onAddStartedNav(nav) {
+    nav.push({
+      name:'taskform'
+    });
+  }
+
   renderScene(route, nav) {
     switch (route.name) {
       case 'taskform':
@@ -31,11 +37,9 @@ class TodoApp extends React.Component {
       default:
         return (
           <TaskList
-            onAddStarted={() =>
-              nav.push({
-                name:'taskform'
-            })}
+            onAddStartedNav={route.passProps.onAddStartedNav}
             todos={route.passProps.todos}
+            nav={nav}
             />
         );
     }
@@ -48,6 +52,7 @@ class TodoApp extends React.Component {
               name: 'tasklist',
               index: 0,
               passProps: {
+                onAddStartedNav: this.onAddStartedNav,
                 todos: this.state.todos}
             }
           }
