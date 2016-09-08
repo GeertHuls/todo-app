@@ -15,6 +15,8 @@ class TodoApp extends React.Component {
     this.onAddStartedNav = this.onAddStartedNav.bind(this);
     this.renderScene = this.renderScene.bind(this);
 
+    this.onCancel = this.onCancel.bind(this);
+
     this.state = {
       todos: [
         {
@@ -33,11 +35,19 @@ class TodoApp extends React.Component {
     });
   }
 
+  onCancel() {
+    //Hide the current view
+    //and revert to the previous view.
+    this.nav.pop();
+  }
+
   renderScene(route, nav) {
     switch (route.name) {
       case 'taskform':
         return (
-          <TaskForm />
+          <TaskForm
+            onCancel={this.onCancel}
+            />
         );
       default:
         return (

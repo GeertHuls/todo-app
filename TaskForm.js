@@ -62,12 +62,18 @@ class TaskForm extends React.Component {
         <TouchableHighlight style={styles.button}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.button, styles.cancelButton]}>
+        <TouchableHighlight
+          onPress={this.props.onCancel}
+          style={[styles.button, styles.cancelButton]}>
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
+
+TaskForm.propTypes = {
+  onCancel: React.PropTypes.func.isRequired
+};
 
 export default TaskForm;
