@@ -38,8 +38,6 @@ class TaskList extends React.Component{
   constructor(props, context) {
     super(props, context);
 
-    this._onAddStarted = this._onAddStarted.bind(this);
-
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
@@ -55,11 +53,6 @@ class TaskList extends React.Component{
     );
   }
 
-  _onAddStarted() {
-    let nav = this.props.nav;
-    this.props.onAddStartedNav(nav);
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -69,7 +62,7 @@ class TaskList extends React.Component{
           renderRow={this.renderRow} />
 
         <TouchableHighlight
-          onPress={this._onAddStarted}
+          onPress={this.props.onAddStartedNav}
           style={styles.button}>
             <Text style={styles.buttonText}>
               Add one
@@ -81,7 +74,6 @@ class TaskList extends React.Component{
 }
 
 TaskList.propTypes = {
-  nav: React.PropTypes.object.isRequired,
   onAddStartedNav: React.PropTypes.func.isRequired,
   todos: React.PropTypes
     .arrayOf(React.PropTypes.object).isRequired

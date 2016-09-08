@@ -11,6 +11,10 @@ class TodoApp extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.referenceNav = this.referenceNav.bind(this);
+    this.onAddStartedNav = this.onAddStartedNav.bind(this);
+    this.renderScene = this.renderScene.bind(this);
+
     this.state = {
       todos: [
         {
@@ -23,8 +27,8 @@ class TodoApp extends React.Component {
     };
   }
 
-  onAddStartedNav(nav) {
-    nav.push({
+  onAddStartedNav() {
+    this.nav.push({
       name:'taskform'
     });
   }
@@ -38,9 +42,8 @@ class TodoApp extends React.Component {
       default:
         return (
           <TaskList
-            onAddStartedNav={route.passProps.onAddStartedNav}
-            todos={route.passProps.todos}
-            nav={nav}
+            onAddStartedNav={this.onAddStartedNav}
+            todos={this.state.todos}
             />
         );
     }
@@ -50,18 +53,19 @@ class TodoApp extends React.Component {
     return Navigator.SceneConfigs.FloatFromBottom;
   }
 
+  referenceNav(nav) {
+    this.nav = nav;
+  }
+
   render() {
       return (
         <Navigator
           configureScene={this.configureScene}
+          ref={this.referenceNav}
           initialRoute={{
               name: 'tasklist',
-              index: 0,
-              passProps: {
-                onAddStartedNav: this.onAddStartedNav,
-                todos: this.state.todos}
-            }
-          }
+              index: 0
+          }}
           renderScene={this.renderScene} />
       );
   }
