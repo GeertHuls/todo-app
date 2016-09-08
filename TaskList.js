@@ -47,6 +47,18 @@ class TaskList extends React.Component{
     };
   }
 
+  //Happens right after the set state command in the onAdd function
+  //in the main component. Recalculate the dataSource
+  //with the latest data.
+  componentWillReceiveProps(nextProps) {
+    const dataSource = this
+      .state
+      .dataSource
+      .cloneWithRows(nextProps.todos);
+
+      this.setState({ dataSource });
+  }
+
   renderRow(todo) {
     return (
       <TaskRow todo={todo} />

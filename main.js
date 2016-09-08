@@ -43,7 +43,11 @@ class TodoApp extends React.Component {
   }
 
   onAdd(task) {
-    console.log('new task ', task)
+    this.state.todos.push({ task });
+
+    this.setState({
+      todos: this.state.todos
+    });
     this.nav.pop();
   }
 
