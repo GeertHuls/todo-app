@@ -47,19 +47,30 @@ const styles = StyleSheet.create({
 class TaskForm extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      task: ''
-    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onAddPressed = this.onAddPressed.bind(this);
+  }
+
+  onChange(text) {
+    this.task = text;
+  }
+
+  onAddPressed() {
+    this.props.onAdd(this.task);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <TextInput
+          onChangeText={this.onChange}
           style={styles.input}
         />
 
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight
+          onPress={this.onAddPressed}
+          style={styles.button}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
         <TouchableHighlight
@@ -73,7 +84,8 @@ class TaskForm extends React.Component {
 }
 
 TaskForm.propTypes = {
-  onCancel: React.PropTypes.func.isRequired
+  onCancel: React.PropTypes.func.isRequired,
+  onAdd: React.PropTypes.func.isRequired
 };
 
 export default TaskForm;

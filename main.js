@@ -16,6 +16,7 @@ class TodoApp extends React.Component {
     this.renderScene = this.renderScene.bind(this);
 
     this.onCancel = this.onCancel.bind(this);
+    this.onAdd = this.onAdd.bind(this);
 
     this.state = {
       todos: [
@@ -41,11 +42,17 @@ class TodoApp extends React.Component {
     this.nav.pop();
   }
 
+  onAdd(task) {
+    console.log('new task ', task)
+    this.nav.pop();
+  }
+
   renderScene(route, nav) {
     switch (route.name) {
       case 'taskform':
         return (
           <TaskForm
+            onAdd={this.onAdd}
             onCancel={this.onCancel}
             />
         );
