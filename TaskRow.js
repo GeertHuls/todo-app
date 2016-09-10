@@ -3,7 +3,8 @@ import React from 'react';
 import {
   Text,
   StyleSheet,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -22,22 +23,45 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 20,
     fontWeight: '300'
+  },
+  doneButton: {
+    borderRadius: 5,
+    backgroundColor: '#EAEAEA',
+    padding: 5
   }
 });
 
+
 class TaskRow extends React.Component{
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.onDonePressed = this.onDonePressed.bind(this);
+  }
+
+  onDonePressed() {
+    this.props.onDone(this.props.todo);
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
           {this.props.todo.task}
         </Text>
+        <TouchableHighlight
+          onPress={this.onDonePressed}
+          style={styles.doneButton}>
+            <Text>Done</Text>
+        </TouchableHighlight>
       </View>
     );
   }
 }
 
 TaskRow.propTypes = {
+  onDone: React.PropTypes.func.isRequired,
   todo: React.PropTypes.shape({
     task: React.PropTypes.string.isRequired
   }).isRequired

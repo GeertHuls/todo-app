@@ -18,6 +18,8 @@ class TodoApp extends React.Component {
     this.onCancel = this.onCancel.bind(this);
     this.onAdd = this.onAdd.bind(this);
 
+    this.onDone = this.onDone.bind(this);
+
     this.state = {
       todos: [
         {
@@ -51,6 +53,15 @@ class TodoApp extends React.Component {
     this.nav.pop();
   }
 
+  onDone(todo) {
+    const filteredTodos =
+      this.state.todos.filter((filterTodo) => {
+        return filterTodo !== todo;
+      });
+
+      this.setState({ todos: filteredTodos})
+  }
+
   renderScene(route, nav) {
     switch (route.name) {
       case 'taskform':
@@ -64,6 +75,7 @@ class TodoApp extends React.Component {
         return (
           <TaskList
             onAddStartedNav={this.onAddStartedNav}
+            onDone={this.onDone}
             todos={this.state.todos}
             />
         );
