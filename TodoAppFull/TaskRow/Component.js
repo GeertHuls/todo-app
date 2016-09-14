@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {
-  Text,
-  StyleSheet,
-  View,
-  TouchableHighlight
+  StyleSheet
 } from 'react-native';
+
+//React navtive will automatiacllay pick
+//Render.ios or Render.android accordingly.
+import Render from './Render';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
   }
 });
 
-
 class TaskRow extends React.Component{
 
   constructor(props, context) {
@@ -45,18 +45,7 @@ class TaskRow extends React.Component{
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.label}>
-          {this.props.todo.task}
-        </Text>
-        <TouchableHighlight
-          onPress={this.onDonePressed}
-          style={styles.doneButton}>
-            <Text>Done</Text>
-        </TouchableHighlight>
-      </View>
-    );
+    return Render.bind(this)(styles);
   }
 }
 
