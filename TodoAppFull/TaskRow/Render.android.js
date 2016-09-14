@@ -5,28 +5,50 @@ import {
   View,
   TouchableHighlight,
   Image,
-  StyleSheet
+  StyleSheet,
+  Animated
 } from 'react-native';
 
-const localStyle = StyleSheet.create({
-  doneButton: {
-    borderRadius: 5,
-    padding: 5
-  }
-});
-
 export default function render(styles) {
+  const doneAnimation = new Animated.ValueXY();
+
+  const localStyle = StyleSheet.create({
+    doneButton: {
+      borderRadius: 5,
+      padding: 5
+    },
+    row: {
+      transform: doneAnimation.getTranslateTransform()
+    }
+  });
+
+  function animatedPress() {
+    Animated.spring(doneAnimation, {
+      tension: 2,
+      friction: 3,
+      toValue: {
+        x: -1000,
+        y: 0
+      }
+    }).start();
+
+    //Delay remove from state (using this.onDonePressed).
+    setTimeout(() => {
+      this.onDonePressed();
+    }, 1000);
+  }
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, localStyle.row]}>
       <Text style={styles.label}>
         {this.props.todo.task}
       </Text>
       <TouchableHighlight
-        onPress={this.onDonePressed}
+        onPress={animatedPress.bind(this)}
         style={localStyle.doneButton}
         underlayColor="#ddd">
           <Image source={require('../images/done.png')} />
       </TouchableHighlight>
-    </View>
+    </Animated.View>
   );
 }
