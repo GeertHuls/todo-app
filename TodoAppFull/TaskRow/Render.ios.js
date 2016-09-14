@@ -2,21 +2,31 @@ import React from 'react';
 
 import {
   Text,
-  View,
-  TouchableHighlight
+  View
 } from 'react-native';
 
+import Swipout from react-native-swipeout;
+
 export default function render(styles) {
+
+  const buttons = [
+    {
+      text: 'Done',
+      backgroundColor: '#05A5D1',
+      underlayColor: '#273539',
+      onPress: this.onDonePressed
+    }
+  ]
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>
-        ios: {this.props.todo.task}
-      </Text>
-      <TouchableHighlight
-        onPress={this.onDonePressed}
-        style={styles.doneButton}>
-          <Text>Done</Text>
-      </TouchableHighlight>
-    </View>
+    <SwipeOut
+      backgroundColor='#fff'
+      right={buttons}>
+      <View style={styles.container}>
+        <Text style={styles.label}>
+          ios: {this.props.todo.task}
+        </Text>
+      </View>
+    </SwipeOut>
   );
 }
