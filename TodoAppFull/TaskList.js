@@ -109,7 +109,7 @@ class TaskList extends React.Component{
 }
 
 TaskList.propTypes = {
-  filer: React.PropTypes.string.isRequired,
+  filter: React.PropTypes.string.isRequired,
   onAddStartedNav: React.PropTypes.func.isRequired,
   onDone: React.PropTypes.func.isRequired,
   onToggle: React.PropTypes.func.isRequired,
