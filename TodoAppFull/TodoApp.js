@@ -65,6 +65,7 @@ class TodoApp extends React.Component {
       default:
         return (
           <TaskList
+            filter={this.state.filter}
             onAddStartedNav={this.onAddStartedNav}
             onDone={this.onDone}
             todos={this.state.todos}
