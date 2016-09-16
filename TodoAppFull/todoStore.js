@@ -13,7 +13,7 @@ function todoStore(state = defaultState, action) {
     case 'ADD_TODO':
       return Object.assign({}, state, {
         todos: state.todos.concat([{
-          task: actions.task
+          task: action.task
         }])
       });
     default:

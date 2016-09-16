@@ -21,6 +21,9 @@ class TodoApp extends React.Component {
     this.onDone = this.onDone.bind(this);
 
     this.state = store.getState();
+    store.subscribe(() => {
+      this.setState(store.getState());
+    });
   }
 
   onAddStartedNav() {
@@ -36,10 +39,9 @@ class TodoApp extends React.Component {
   }
 
   onAdd(task) {
-    this.state.todos.push({ task });
-
-    this.setState({
-      todos: this.state.todos
+    store.dispatch({
+      type: 'ADD_TODO',
+      task
     });
     this.nav.pop();
   }
