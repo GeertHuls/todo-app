@@ -5,6 +5,7 @@ import {
 
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
+import store from './todoStore';
 
 class TodoApp extends React.Component {
   constructor(props, context) {
@@ -19,16 +20,7 @@ class TodoApp extends React.Component {
 
     this.onDone = this.onDone.bind(this);
 
-    this.state = {
-      todos: [
-        {
-          task:'Learn react native'
-        },
-        {
-            task: 'Learn Redux'
-        }
-      ]
-    };
+    this.state = store.getState();
   }
 
   onAddStartedNav() {
