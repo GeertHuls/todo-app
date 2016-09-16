@@ -19,6 +19,7 @@ class TodoApp extends React.Component {
     this.onAdd = this.onAdd.bind(this);
 
     this.onDone = this.onDone.bind(this);
+    this.onToggle = this.onToggle.bind(this);
 
     this.state = store.getState();
     store.subscribe(() => {
@@ -53,6 +54,12 @@ class TodoApp extends React.Component {
     });
   }
 
+  onToggle() {
+    store.dispatch({
+      type: 'TOGGLE_STATE'
+    });
+  }
+
   renderScene(route, nav) {
     switch (route.name) {
       case 'taskform':
@@ -68,6 +75,7 @@ class TodoApp extends React.Component {
             filter={this.state.filter}
             onAddStartedNav={this.onAddStartedNav}
             onDone={this.onDone}
+            onToggle={this.onToggle}
             todos={this.state.todos}
             />
         );

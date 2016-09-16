@@ -84,6 +84,7 @@ class TaskList extends React.Component{
         <View
             style={styles.toggleRow}>
             <Switch
+              onValueChange={this.props.onToggle}
               style={styles.switch}
               value={this.props.filter !== 'pending'}/>
             <Text style={styles.toggleText}>
@@ -111,6 +112,7 @@ TaskList.propTypes = {
   filer: React.PropTypes.string.isRequired,
   onAddStartedNav: React.PropTypes.func.isRequired,
   onDone: React.PropTypes.func.isRequired,
+  onToggle: React.PropTypes.func.isRequired,
   todos: React.PropTypes
     .arrayOf(React.PropTypes.object).isRequired
 };
